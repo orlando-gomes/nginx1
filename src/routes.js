@@ -9,6 +9,10 @@ const routs = new Router();
 
 routs.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+routs.use((req, res) => {
+  return res.json(req);
+})
+
 routs.get(
   `${process.env.NODE_ENV === 'production' ? process.env.MS : ''}/`,
   (req, res) => {
